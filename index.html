@@ -4,42 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qingbei University - Admission Acceptance Portal</title>
+    <title>Qingbei University - Official Admission Letter</title>
     <style>
-        /* 基础样式 - 兼容邮件和网页 */
-        body {
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', 'Georgia', 'Garamond', serif;
+        }
+        
+        body {
             background-color: #f8f9fa;
             color: #333;
-            font-family: 'Times New Roman', Georgia, serif;
             line-height: 1.6;
+            min-height: 100vh;
+            padding: 40px 20px;
+            background-image: linear-gradient(to bottom, #f8f9fa, #e9ecef);
         }
         
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background-color: #ffffff;
+            border-radius: 2px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
             border-top: 8px solid #0d47a1;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        /* University Seal */
+        .seal {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #0d47a1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #0d47a1;
+            background-color: white;
+            z-index: 2;
+            text-align: center;
+            line-height: 1.2;
+            padding: 5px;
         }
         
         .letterhead {
-            padding: 40px 40px 20px 40px;
+            padding: 50px 60px 30px 60px;
             border-bottom: 1px solid #e0e0e0;
+            position: relative;
         }
         
         .university-name {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: bold;
             color: #0d47a1;
             margin-bottom: 5px;
+            letter-spacing: 0.5px;
         }
         
         .school-name {
-            font-size: 18px;
+            font-size: 20px;
             color: #555;
             margin-bottom: 10px;
+            font-weight: normal;
         }
         
         .address {
@@ -57,7 +91,7 @@
         }
         
         .content {
-            padding: 30px 40px;
+            padding: 40px 60px;
         }
         
         .salutation {
@@ -77,6 +111,7 @@
         .message {
             font-size: 16px;
             margin-bottom: 20px;
+            text-align: justify;
             line-height: 1.7;
         }
         
@@ -86,6 +121,18 @@
             margin: 25px 0;
             border-left: 4px solid #0d47a1;
             font-style: italic;
+        }
+        
+        .committee {
+            font-style: italic;
+            margin: 20px 0;
+            color: #555;
+            font-size: 16px;
+        }
+        
+        .program-name {
+            font-weight: bold;
+            color: #0d47a1;
         }
         
         .funding-section {
@@ -109,7 +156,7 @@
             font-size: 15px;
         }
         
-        .funding-item:before {
+        .funding-item::before {
             content: "•";
             position: absolute;
             left: 5px;
@@ -124,7 +171,6 @@
             border-left: 4px solid #1565c0;
         }
         
-        /* 按钮样式 */
         .accept-button {
             display: block;
             width: 300px;
@@ -137,20 +183,16 @@
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
+            transition: all 0.3s ease;
             text-align: center;
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: background-color 0.3s;
         }
         
         .accept-button:hover {
-            background-color: #1565c0;
-        }
-        
-        .accept-button.accepted {
-            background-color: #4CAF50;
-            cursor: default;
+            background-color = '#1565c0';
+            box-shadow: 0 4px 12px rgba(13, 71, 161, 0.3);
         }
         
         .footer {
@@ -190,52 +232,21 @@
             font-style: italic;
         }
         
-        .seal {
-            float: right;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 2px solid #0d47a1;
-            text-align: center;
-            line-height: 1.2;
-            padding: 10px;
-            font-size: 12px;
-            font-weight: bold;
-            color: #0d47a1;
-            background-color: white;
-            margin-left: 20px;
-        }
-        
-        /* 确认消息 */
-        .confirmation-message {
-            display: none;
-            text-align: center;
-            padding: 30px;
-            background-color: #f5f9ff;
-            border-radius: 8px;
-            margin-top: 30px;
-            border: 2px solid #4CAF50;
-        }
-        
-        .confirmation-message h3 {
-            color: #4CAF50;
-            margin-bottom: 15px;
-        }
-        
-        .confirmation-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-            color: #4CAF50;
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 600px) {
-            .letterhead, .content {
-                padding: 20px;
+        @media (max-width: 768px) {
+            .content, .letterhead {
+                padding: 30px;
             }
             
             .university-name {
-                font-size: 24px;
+                font-size: 26px;
+            }
+            
+            .school-name {
+                font-size: 18px;
+            }
+            
+            .congrats {
+                font-size: 22px;
             }
             
             .accept-button {
@@ -244,20 +255,88 @@
             }
             
             .seal {
-                float: none;
-                margin: 20px auto;
-                display: block;
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 0 auto 20px auto;
+            }
+        }
+        
+        /* Hidden confirmation message */
+        .surprise {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background-color: #f5f9ff;
+            border-radius: 4px;
+            margin-top: 30px;
+            animation: fadeIn 1s;
+            border-top: 4px solid #0d47a1;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Official stamp */
+        .stamp {
+            position: absolute;
+            bottom: 30px;
+            right: 60px;
+            width: 120px;
+            height: 120px;
+            border: 2px dashed #0d47a1;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #0d47a1;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.3;
+            padding: 10px;
+            opacity: 0.7;
+            transform: rotate(15deg);
+        }
+        
+        /* Floating hearts */
+        .heart {
+            position: fixed;
+            font-size: 20px;
+            color: #e91e63;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.8;
+            animation: floatUp linear forwards;
+        }
+        
+        @keyframes floatUp {
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- University Seal -->
+        <div class="seal">
+            QINGBEI<br>UNIVERSITY
+        </div>
+        
+        <!-- Official Stamp -->
+        <div class="stamp">
+            <div>OFFICIAL</div>
+            <div>ADMISSION</div>
+            <div>LETTER</div>
+            <div>2025-2026</div>
+        </div>
+        
         <div class="letterhead">
-            <div class="seal">
-                QINGBEI<br>UNIVERSITY
-            </div>
-            
             <div class="university-name">QINGBEI UNIVERSITY</div>
             <div class="school-name">School of Unconditional Love</div>
             
@@ -268,21 +347,19 @@
                 Tel: 18080817059
             </div>
             
-            <div class="date" id="currentDate">December 25, 2024</div>
-            
-            <div style="clear: both;"></div>
+            <div class="date" id="currentDate"></div>
         </div>
         
         <div class="content">
-            <div class="salutation">Dear <span id="recipientName">Charlotte</span>,</div>
+            <div class="salutation">Dear <span id="recipientName">[Recipient's Name]</span>,</div>
             
             <div class="congrats">OFFER OF ADMISSION</div>
             
             <div class="message">
-                On behalf of Qingbei University, I am pleased to offer you admission to the <span style="font-weight: bold; color: #0d47a1;">PhD Program in "Chi Xiang's Favorite Person"</span> at the <strong>School of Unconditional Love</strong> for the Fall 2026 semester.
+                On behalf of Qingbei University, I am pleased to offer you admission to the <span class="program-name">PhD Program in "Chi Xiang's Favorite Person"</span> at the <strong>School of Unconditional Love</strong> for the Fall 2026 semester.
             </div>
             
-            <div style="font-style: italic; margin: 20px 0; color: #555; font-size: 16px;">
+            <div class="committee">
                 This decision was made after a comprehensive review of your application by the Office of Graduate Admissions.
             </div>
             
@@ -323,23 +400,18 @@
                 Your applicant ID is: QB2026-8473
             </div>
             
-            <!-- 接受按钮 -->
-            <button id="acceptBtn" class="accept-button" onclick="acceptOffer()">ACCEPT ADMISSION OFFER</button>
+            <button class="accept-button" id="acceptBtn">ACCEPT ADMISSION OFFER</button>
             
-            <!-- 确认消息 -->
-            <div id="confirmationMessage" class="confirmation-message">
-                <div class="confirmation-icon">✓</div>
-                <h3>Admission Accepted Successfully!</h3>
-                <p>Congratulations! Your admission to Qingbei University has been confirmed.</p>
-                <p>You will receive a confirmation email shortly with next steps.</p>
-                <p><strong>Welcome to the Qingbei University family!</strong></p>
-                <p style="margin-top: 20px; font-size: 14px; color: #666;">
-                    A confirmation number has been generated for your records:<br>
-                    <strong style="font-size: 16px;">QB-CONFIRM-2026-8473</strong>
+            <div id="surpriseMessage" class="surprise">
+                <h3 style="color: #0d47a1; margin: 20px 0;">Congratulations on Accepting This Offer! ❤️</h3>
+                <p style="font-size: 16px; margin-bottom: 15px;">Your admission is now officially confirmed.</p>
+                <p style="margin-bottom: 20px; font-style: italic; color: #555;">
+                    Remember: You are brilliant, you are capable, and you are totally going to nail this process.
                 </p>
+                <div style="margin-top: 30px; font-size: 14px; color: #777;">
+                    Office of Graduate Admissions | Qingbei University
+                </div>
             </div>
-            
-            <div style="clear: both;"></div>
             
             <div class="signature">
                 <div>Sincerely,</div>
@@ -358,103 +430,131 @@
     </div>
 
     <script>
-        // 设置当前日期
-        function setCurrentDate() {
-            const today = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('currentDate').textContent = today.toLocaleDateString('en-US', options);
+        // Set current date in formal format
+        const today = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('currentDate').textContent = today.toLocaleDateString('en-US', options);
+        
+        // Get name from URL parameters (if any)
+        const urlParams = new URLSearchParams(window.location.search);
+        const nameFromUrl = urlParams.get('name');
+        if (nameFromUrl) {
+            document.getElementById('recipientName').textContent = decodeURIComponent(nameFromUrl);
+        } else {
+            // Use a formal default
+            document.getElementById('recipientName').textContent = "Candidate";
         }
         
-        // 从URL参数获取收件人姓名
-        function getRecipientName() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const nameFromUrl = urlParams.get('name');
-            if (nameFromUrl) {
-                document.getElementById('recipientName').textContent = decodeURIComponent(nameFromUrl);
+        // Function to create floating hearts
+        function createFloatingHearts(count) {
+            const heartColors = ['#e91e63', '#ff4081', '#f50057', '#c2185b', '#d81b60'];
+            
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.innerHTML = '❤️';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = '100vh';
+                    heart.style.fontSize = (Math.random() * 25 + 15) + 'px';
+                    heart.style.color = heartColors[Math.floor(Math.random() * heartColors.length)];
+                    heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                    
+                    document.body.appendChild(heart);
+                    
+                    // Remove heart after animation completes
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.remove();
+                        }
+                    }, parseFloat(heart.style.animationDuration) * 1000);
+                }, i * 200);
             }
         }
         
-        // 接受录取通知
-        function acceptOffer() {
-            const button = document.getElementById('acceptBtn');
-            const confirmation = document.getElementById('confirmationMessage');
+        // Handle accept button click
+        document.getElementById('acceptBtn').addEventListener('click', function() {
+            const surprise = document.getElementById('surpriseMessage');
+            surprise.style.display = 'block';
             
-            // 更新按钮状态
-            button.textContent = 'ADMISSION ACCEPTED ✓';
-            button.classList.add('accepted');
-            button.disabled = true;
+            // Button update
+            this.style.backgroundColor = '#1565c0';
+            this.style.cursor = 'default';
+            this.textContent = 'ADMISSION ACCEPTED ✓';
+            this.disabled = true;
             
-            // 显示确认消息
-            confirmation.style.display = 'block';
+            // Scroll to confirmation message
+            surprise.scrollIntoView({ behavior: 'smooth', block: 'center' });
             
-            // 滚动到确认消息
-            confirmation.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Add floating hearts
+            createFloatingHearts(15);
             
-            // 发送确认到服务器（这里只是模拟）
-            sendConfirmationToServer();
-            
-            // 添加一些视觉反馈
-            showCelebration();
-        }
+            // Add subtle confetti effect
+            celebrateAdmission();
+        });
         
-        // 模拟发送确认到服务器
-        function sendConfirmationToServer() {
-            // 在实际应用中，这里会发送AJAX请求到服务器
-            console.log('Admission acceptance sent to server');
+        // Subtle celebration effect
+        function celebrateAdmission() {
+            const colors = ['#0d47a1', '#1565c0', '#1976d2', '#2196f3'];
             
-            // 模拟API调用
-            setTimeout(() => {
-                console.log('Server response: Admission confirmed successfully');
-            }, 1000);
-        }
-        
-        // 显示庆祝效果
-        function showCelebration() {
-            // 简单的庆祝效果
-            const container = document.querySelector('.container');
-            
-            // 添加短暂的闪光效果
-            container.style.boxShadow = '0 0 30px rgba(76, 175, 80, 0.5)';
-            setTimeout(() => {
-                container.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-            }, 1000);
-            
-            // 添加庆祝消息到控制台
-            console.log('%c 🎉 Congratulations! Admission Accepted! 🎉', 'color: #4CAF50; font-size: 16px; font-weight: bold;');
-        }
-        
-        // 页面加载时初始化
-        window.onload = function() {
-            setCurrentDate();
-            getRecipientName();
-            
-            // 检查是否已经接受过（从本地存储）
-            if (localStorage.getItem('qingbeiAdmissionAccepted')) {
-                document.getElementById('acceptBtn').click();
+            // Create subtle "confetti"
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.innerHTML = '•';
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '0';
+                    confetti.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                    confetti.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.zIndex = '9999';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.style.opacity = '0.7';
+                    confetti.style.fontWeight = 'bold';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    // Animation
+                    const animation = confetti.animate([
+                        { transform: 'translateY(0) rotate(0deg)', opacity: 0.8 },
+                        { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 180}deg)`, opacity: 0 }
+                    ], {
+                        duration: 2000 + Math.random() * 1000,
+                        easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+                    });
+                    
+                    animation.onfinish = () => confetti.remove();
+                }, i * 100);
             }
-            
-            // 添加页面加载动画
+        }
+        
+        // Add formal page load effect
+        window.addEventListener('load', function() {
             document.querySelector('.container').style.opacity = '0';
             document.querySelector('.container').style.transform = 'translateY(20px)';
             
             setTimeout(() => {
-                document.querySelector('.container').style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                document.querySelector('.container').style.transition = 'opacity 0.8s ease, transform 0.8s ease';
                 document.querySelector('.container').style.opacity = '1';
                 document.querySelector('.container').style.transform = 'translateY(0)';
-            }, 100);
-        };
-        
-        // 保存接受状态到本地存储
-        function saveAcceptance() {
-            localStorage.setItem('qingbeiAdmissionAccepted', 'true');
-        }
-        
-        // 修改acceptOffer函数以保存状态
-        const originalAcceptOffer = acceptOffer;
-        acceptOffer = function() {
-            originalAcceptOffer();
-            saveAcceptance();
-        };
+            }, 300);
+            
+            // Add subtle watermark effect
+            const watermark = document.createElement('div');
+            watermark.style.position = 'fixed';
+            watermark.style.top = '50%';
+            watermark.style.left = '50%';
+            watermark.style.transform = 'translate(-50%, -50%) rotate(-45deg)';
+            watermark.style.fontSize = '120px';
+            watermark.style.color = 'rgba(13, 71, 161, 0.03)';
+            watermark.style.fontWeight = 'bold';
+            watermark.style.zIndex = '-1';
+            watermark.style.pointerEvents = 'none';
+            watermark.style.whiteSpace = 'nowrap';
+            watermark.textContent = 'QINGBEI UNIVERSITY';
+            
+            document.body.appendChild(watermark);
+        });
     </script>
 </body>
 </html>
